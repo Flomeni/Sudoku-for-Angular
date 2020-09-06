@@ -1,0 +1,19 @@
+@board-padding-left-offset: 73px;
+@logo-right-padding-from-col-auto: 15px;
+
+@btn-width: 375px;
+@btn-border-radius: 41px;
+@btn-font-size: 24px;
+
+.sudoku {
+  &__board-offset {
+    padding-left: calc(@board-padding-left-offset - @logo-right-padding-from-col-auto);
+  }
+
+  &__btn {
+    width: @btn-width;
+    border-radius: @btn-border-radius;
+    font-size: @btn-font-size;
+    border: 0;
+  }
+}
