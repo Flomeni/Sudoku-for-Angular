@@ -51,23 +51,6 @@ export class SudokuService {
     return result;
   }
 
-/*  private applyDifficultyMask(solvedSudoku: number[],
-                              difficultyMask: number): Array<Cell> {
-    const getNonEmptyIndex = () => {
-      const index = SudokuUtils.GENERATE_RANDOM_NUMBER(result.length);
-      return result[index] ? index : getNonEmptyIndex();
-    };
-
-    const result = solvedSudoku.filter(() => true);
-
-    while (result.length - difficultyMask > result.filter((c: Cell) => !c.isMasked).length) {
-      const idx = getNonEmptyIndex();
-      result[idx] = result[idx].setMasked();
-    }
-
-    return result;
-  }*/
-
   private arrayToRows(arr: Array<Cell>): Array<Array<Cell>> {
     const result = SudokuUtils.GENERATE_ARRAY(GREED_SIZE, () => []);
     let row = 0;

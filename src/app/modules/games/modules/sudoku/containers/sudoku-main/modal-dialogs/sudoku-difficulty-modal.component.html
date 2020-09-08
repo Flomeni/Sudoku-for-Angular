@@ -7,7 +7,7 @@
       class="radio-group"
       [(ngModel)]="difficulty">
 
-      <mat-radio-button class="radio-button"
+      <mat-radio-button class="radio-button mb-3"
                         *ngFor="let diff of difficulties"
                         [value]="diff"
                         [checked]="difficulty.equalTo(diff)">
