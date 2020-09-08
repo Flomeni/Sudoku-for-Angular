@@ -1,0 +1,26 @@
+@import (reference) "variables.less";
+
+.mat-radio-outer-circle, .mat-radio-inner-circle {
+  border-color: @radio-bg-color-enabled;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: @radio-bg-color-enabled;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple{
+  color: @radio-bg-color-enabled;
+  border-color: @radio-bg-color-enabled;
+  background-color: @radio-bg-color-enabled;
+}
+
+
+.mat-radio-label {
+  justify-content: center;
+}
+
+.mat-radio-label-content {
+  padding-left: 20px;
+}

@@ -1,15 +1,17 @@
 <div class="greed-container">
   <table class="greed">
     <ng-container *ngIf="board">
-      <tr *ngFor="let row of board.cells">
-        <td *ngFor="let cell of row">
+      <tr *ngFor="let row of board.cells; index as i">
+        <td *ngFor="let cell of row; index as j">
           <div class="cell"
-               [ngClass]="{
-              'cell__invalid': !cell.valid,
-              'cell__common': cell.valid,
-              'cell__readonly': !cell.isMasked
-            }">
-            {{cell.isMasked ? '' : cell.value}}
+               [ngClass]="{'cell__invalid': !cell.valid,
+                               'cell__common': cell.valid,
+                               'cell__readonly': !cell.isMasked}">
+
+            <input [disabled]="(!cell.isMasked && cell.valid)"
+                   [value]="cell.isMasked ? cell.maskedValue : cell.initialValue"
+                   pattern="\d*"
+                   (keyup)="checkValidity(cell, $event.target, i, j)">
           </div>
         </td>
       </tr>

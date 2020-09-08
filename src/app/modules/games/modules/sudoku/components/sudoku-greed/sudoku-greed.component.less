@@ -10,7 +10,7 @@
   font-weight: 500;
   color: #000000;
   text-align: center;
-  line-height: 100px;
+  //line-height: 100px;
 
   &__common {
     border: 1px solid #313131;
@@ -25,5 +25,18 @@
     background: @error-bg-color;
     border: 1px solid @error-color;
     color: @error-color;
+
+    input {
+      color: @error-color;
+    }
+  }
+
+  input {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    border: 0;
+    text-align: center;
+    outline: 0;
   }
 }

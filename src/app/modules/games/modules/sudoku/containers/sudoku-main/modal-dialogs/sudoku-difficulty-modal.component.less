@@ -7,6 +7,10 @@
 
 .dialog-container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 mat-dialog-actions {
@@ -18,4 +22,25 @@ mat-dialog-content {
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  height: 400px;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+.btn__close-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  background: #fff;
+  font-size: 25px;
+  font-weight: 600;
 }

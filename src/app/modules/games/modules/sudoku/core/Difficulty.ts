@@ -36,4 +36,8 @@ export class Difficulty {
   private constructor(readonly code: DifficultyCode,
                       readonly mask: number,
                       readonly desc: string) {}
+
+  public equalTo(other: Difficulty): boolean {
+    return (this.code === other.code);
+  }
 }

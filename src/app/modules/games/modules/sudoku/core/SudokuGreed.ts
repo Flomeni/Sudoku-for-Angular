@@ -2,12 +2,12 @@ import {Cell} from './Cell';
 
 export class SudokuGreed {
 
-  constructor(private _cells: ReadonlyArray<ReadonlyArray<Cell>>,
+  constructor(private _cells: Array<Array<Cell>>,
               private _valid = true) {
   }
 
 
-  get cells(): ReadonlyArray<ReadonlyArray<Cell>> {
+  get cells(): Array<Array<Cell>> {
     return this._cells;
   }
 

@@ -1,30 +1,45 @@
 export class Cell {
-  constructor(private _value: number,
+
+  constructor(private _initialValue: number,
               private _isMasked = false,
-              private _valid = true) {
+              private _valid = true,
+              private _maskedValue = '') {
   }
 
-  get value(): number {
-    return this._value;
+  get initialValue(): number {
+    return this._initialValue;
+  }
+
+  get maskedValue(): string {
+    return this._maskedValue;
+  }
+
+  set maskedValue(value: string) {
+    this._maskedValue = value;
   }
 
   get valid(): boolean {
     return this._valid;
   }
 
+  set valid(state: boolean) {
+    this._valid = state;
+  }
+
   get isMasked(): boolean {
     return this._isMasked;
   }
 
-  public setValue(value: number): Cell {
-    return new Cell(value, this._isMasked);
+  public setNewValue(value: string): Cell {
+    const valid = (value === this._initialValue.toString());
+    return new Cell(this._initialValue, this._isMasked, valid, value);
   }
 
   public setMasked(): Cell {
-    return new Cell(this._value, true);
+    return new Cell(this._initialValue, true);
   }
 
   public toggleMask(): Cell {
-    return new Cell(this._value, !this._isMasked);
+    return new Cell(this._initialValue, !this._isMasked);
   }
 }

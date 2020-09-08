@@ -1,21 +1,21 @@
 import {GREED_SIZE, SudokuUtils} from './SudokuUtils';
-import {Cell} from './Cell';
-import {SudokuGreed} from './SudokuGreed';
 
 export class Sudoku {
 
-  public static createSolution(difficulty: number): SudokuGreed {
-    const board = new Sudoku(difficulty).generateSudoku().getPreparedBoard();
-    console.log(board);
-    return board;
+  public static createSolution(): Sudoku {
+    return  new Sudoku().generateSudoku();
   }
 
-  private result: Cell[] = [];
+  private _result: number[] = [];
+
+  get result(): number[] {
+    return this._result;
+  }
 
   /**
    *  @description
-   *  Will be used as the nodeTree in the process of backtracking.
-   *  Each cell has 9 alternative randomly generated paths.
+   *  Будет использовать как дерево нодов в процессе бектрекинга.
+   *  Каждая ячейка имеет 9 рандомно-сгенеренных путей
    */
   private map: number[][] = [];
 
@@ -25,68 +25,16 @@ export class Sudoku {
    **/
   private stack: number[] = [];
 
-  private constructor(private difficulty: number) {
-    this.result = SudokuUtils.GENERATE_ARRAY(GREED_SIZE * GREED_SIZE, () => null);
+  private constructor() {
+    this._result = SudokuUtils.GENERATE_ARRAY(GREED_SIZE * GREED_SIZE, () => null);
     this.map = SudokuUtils.GENERATE_ARRAY(GREED_SIZE * GREED_SIZE, () => SudokuUtils.GENERATE_RANDOM_ROW());
   }
 
   private generateSudoku(): Sudoku {
-    const instance = new Sudoku(this.difficulty);
+    const instance = new Sudoku();
     instance.tryGenerate(this.map, 0);
 
     return instance;
-  }
-
-  private getPreparedBoard(): SudokuGreed {
-    return new SudokuGreed(this.arrayToRows(this.getResultWithAppliedDifficultyMask()));
-  }
-
-/*  private arrayToRows(arr: Array<any>): Array<Array<number>> {
-    const result = SudokuUtils.GENERATE_ARRAY(GREED_SIZE, () => []);
-    let row = 0;
-
-    for (const [index, entry] of Array.from(arr.entries())) {
-      result[row].push(entry);
-
-      const isLastColumn = !((index + 1) % 9);
-      if (isLastColumn) {
-        row += 1;
-      }
-    }
-
-    return result;
-  }*/
-
-  private arrayToRows(arr: Array<Cell>): Array<Array<Cell>> {
-    const result = SudokuUtils.GENERATE_ARRAY(GREED_SIZE, () => []);
-    let row = 0;
-
-    for (const [index, entry] of Array.from(arr.entries())) {
-      result[row].push(entry);
-
-      const isLastColumn = !((index + 1) % 9);
-      if (isLastColumn) {
-        row += 1;
-      }
-    }
-
-    return result;
-  }
-
-  private getResultWithAppliedDifficultyMask(): Array<Cell> {
-    const getNonEmptyIndex = () => {
-      const index = SudokuUtils.GENERATE_RANDOM_NUMBER(result.length);
-      return result[index] ? index : getNonEmptyIndex();
-    };
-
-    const result = this.result.filter(() => true);
-
-    while (result.length - this.difficulty > result.filter((c: Cell) => !c.isMasked).length) {
-      const idx = getNonEmptyIndex();
-      result[idx] = result[idx].setMasked();
-    }
-
-    return result;
   }
 
   private validate(map, index): boolean {
@@ -152,8 +100,7 @@ export class Sudoku {
 
     for (const idx of path) {
       if (this.tryGenerate(map, index + 1)) {
-        // this.result[index] = currentCandidate;
-        this.result[index] = new Cell(currentCandidate);
+        this._result[index] = currentCandidate;
         return true;
       }
     }
