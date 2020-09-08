@@ -1,4 +1,3 @@
-<!-- sudoku host container -->
 <div class="row flex-row">
   <div class="col-auto">
     <div class="d-flex flex-column">
@@ -23,9 +22,14 @@
     </div>
   </div>
   <div class="col-10 sudoku__board-offset">
-    board
+    <ng-container *ngIf="board$ | async as board; else boardLoading">
+      <sudoku-greed [board]="board"></sudoku-greed>
+    </ng-container>
+    <ng-template #boardLoading>
+      Board is loading...
+    </ng-template>
   </div>
 </div>
 <div class="d-flex justify-content-center mt-4">
-  <button class="btn btn-primary sudoku__btn">Create new puzzle</button>
+  <button class="btn btn-primary btn__action" (click)="onCreateNewPuzzle()">Create new puzzle</button>
 </div>

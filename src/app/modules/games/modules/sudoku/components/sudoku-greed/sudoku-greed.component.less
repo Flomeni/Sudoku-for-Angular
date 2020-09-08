@@ -1,0 +1,29 @@
+@import (reference) "../../../../../../../assets/styles/variables";
+
+@td-borders: 2px;
+
+.cell {
+  width: calc(100px - @td-borders);
+  height: calc(100px - @td-borders);
+  border-radius: 8px;
+  font-size: 40px;
+  font-weight: 500;
+  color: #000000;
+  text-align: center;
+  line-height: 100px;
+
+  &__common {
+    border: 1px solid #313131;
+  }
+
+  &__readonly {
+    border: 1px solid #000000;
+    opacity: 0.4;
+  }
+
+  &__invalid {
+    background: @error-bg-color;
+    border: 1px solid @error-color;
+    color: @error-color;
+  }
+}

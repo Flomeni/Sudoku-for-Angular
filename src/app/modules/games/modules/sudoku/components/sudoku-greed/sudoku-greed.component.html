@@ -1,0 +1,18 @@
+<div class="greed-container">
+  <table class="greed">
+    <ng-container *ngIf="board">
+      <tr *ngFor="let row of board.cells">
+        <td *ngFor="let cell of row">
+          <div class="cell"
+               [ngClass]="{
+              'cell__invalid': !cell.valid,
+              'cell__common': cell.valid,
+              'cell__readonly': !cell.isMasked
+            }">
+            {{cell.isMasked ? '' : cell.value}}
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>
